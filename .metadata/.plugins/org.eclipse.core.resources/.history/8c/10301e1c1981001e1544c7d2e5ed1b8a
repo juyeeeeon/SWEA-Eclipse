@@ -1,0 +1,62 @@
+package d3;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class P1225_암호생성기 {
+	public static void main(String args[]) throws Exception
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st = null;
+		
+		int T=1;
+		
+
+		for(int test_case = 1; test_case <= T; test_case++)
+		{
+			br.readLine();
+			st = new StringTokenizer(br.readLine());
+
+			Queue<Integer> que = new LinkedList<>();
+			
+			for (int i = 0; i < 8; i++) {
+				que.add(Integer.parseInt(st.nextToken()));
+			}
+			
+			Queue<Integer> result = encode(que);
+			
+			bw.write("#"+test_case);
+			
+			while(!result.isEmpty()) {
+				bw.write(" " + result.poll());
+			}
+			bw.write('\n');
+		}
+		
+		bw.flush();
+		bw.close();
+		br.close();
+	}
+	
+	public static Queue<Integer> encode(Queue<Integer> que){
+		boolean stop = false;
+		for(int i=1; i<=5; i++) {
+			int tmp = que.poll()-i;
+			if(tmp <= 0) {
+				stop = true;
+				tmp = 0;
+			}
+			que.add(tmp);
+			
+			if(stop) return que;
+		}
+		return null;
+		
+	}
+}
