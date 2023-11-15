@@ -1,0 +1,64 @@
+package d3;
+
+import java.util.Scanner;
+
+public class P1216_회문2{
+	static char[][] arr;
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int T;
+		T=10;
+
+		for(int test_case = 1; test_case <= T; test_case++){
+			
+			sc.nextInt();
+			
+			arr = new char[100][100];
+			for (int i = 0; i < 100; i++) {
+				String str = sc.next();
+				for (int j = 0; j < 100; j++) {
+					arr[i][j]  = str.charAt(j);
+				}
+			}
+			
+			int max = 0;
+			
+			for(int size = 99; size>0; size--) {
+				
+				if(sovled(size)) {
+					System.out.println("#"+test_case+" "+(size-1));
+					break;
+				}
+			}
+		}
+	}
+
+	private static boolean sovled(int size) {
+		for (int i = 0; i < 100; i++) {
+			for(int j = 0; j <= 100-size; j++) {
+				if(solveRow(i, j, size) || solveColumn(j, i, size)) 
+					return true;
+			}				
+		}
+		return false;
+	}
+
+	private static boolean solveColumn(int j, int i, int size) {
+		for(int k=0; k<size/2; k++) {
+			if (arr[j+k][i] != arr[100+j-1-k][i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static boolean solveRow(int i, int j, int size) {
+		for(int k=0; k<size/2; k++) {
+			if (arr[i][j+k] != arr[i][100+j-1-k]) {
+				return false;
+			}
+		}
+		return true;
+	}
+}

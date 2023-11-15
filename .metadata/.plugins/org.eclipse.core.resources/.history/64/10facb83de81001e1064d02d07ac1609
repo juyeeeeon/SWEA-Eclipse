@@ -1,0 +1,37 @@
+package d3;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class P1234_비밀번호 {
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int T;
+		T=1;
+
+		for(int test_case = 1; test_case <= T; test_case++)
+		{
+			int N = sc.nextInt();
+			String nums = sc.next();
+			int head = 0;
+			int tail = 0;
+			for (int i = 0; i < nums.length()-1; i++) {
+				int start = i;
+				if(nums.charAt(i) == nums.charAt(i+1)) {
+					head = i;
+					tail = i+1;
+				}
+			}
+			while(head>=0 && tail<=nums.length()-1) {
+				if(nums.charAt(head) == nums.charAt(tail)) {
+					head--;
+					tail++;
+				}else break;;
+			}
+			
+			String concat = nums.substring(0, ++head).concat(nums.substring(tail,nums.length()));
+			System.out.println("#"+test_case+" "+concat.toString());
+		}
+	}
+}

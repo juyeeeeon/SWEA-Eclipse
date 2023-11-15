@@ -1,0 +1,47 @@
+package d3;
+
+import java.util.Scanner;
+
+public class P4751_다솔이의다이아몬드장식 {
+
+	public static void main(String args[]) throws Exception
+	{
+
+		Scanner sc = new Scanner(System.in);
+		int T;
+		T=sc.nextInt();
+		
+
+		for(int test_case = 1; test_case <= T; test_case++)
+		{
+			String str = sc.next();
+		
+			if(str.length() == 1) formatting1(str);
+			else {
+				String[] arr = new String[str.length()];
+				formatting2(arr);
+			}
+		}
+	}
+
+	private static void formatting1(String substring) {
+		System.out.println("..#..");
+		System.out.println(".#.#.");
+		System.out.println("#."+substring+".#");
+		System.out.println(".#.#.");
+		System.out.println("..#..");
+	}
+	
+	private static void formatting2(String[] arr) {
+		int len = arr.length;
+		System.out.println("..#.".repeat(len)+".");
+		System.out.println(".#.#".repeat(len)+".");
+		for (String str : arr) {
+			System.out.print("#."+str+".");
+		}
+		System.out.println("#");
+		
+		System.out.println(".#.#".repeat(len)+".");
+		System.out.println("..#.".repeat(len)+".");
+	}
+}

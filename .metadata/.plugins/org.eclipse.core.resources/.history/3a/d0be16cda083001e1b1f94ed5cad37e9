@@ -1,0 +1,59 @@
+package d3;
+
+import java.util.Scanner;
+
+public class P1216_회문2{
+	public static void main(String args[]) throws Exception
+	{
+		Scanner sc = new Scanner(System.in);
+		int T;
+		T=1;
+
+		for(int test_case = 1; test_case <= T; test_case++){
+			
+			sc.nextInt();
+			
+			char[][] arr = new char[100][100];
+			for (int i = 0; i < 100; i++) {
+				String str = sc.next();
+				for (int j = 0; j < 100; j++) {
+					arr[i][j]  = str.charAt(j);
+				}
+			}
+			
+			int max = 0;
+			
+			for(int size = 100; size>0; size--) {
+				
+				for (int i = 0; i < 100; i++) {
+					
+					for(int j = 0; j < 100-size; j++) {
+						
+						for (int k = 0; k < size/2; k++) {
+							if (arr[i][j + k] == arr[i][100-j-k]) {
+								max = size;
+							}
+							if (arr[j+k][i] == arr[100-j-k][i]) {
+								max = size;
+							}
+						}
+					}
+				}
+			}
+			
+			System.out.println("#"+test_case+" "+max);
+			
+
+		}
+	}
+	
+	public static boolean isP(String[] arr, int start, int end) {
+		
+		for (int i = start; i < end/2; i++) {
+			if (!arr[i].equals(arr[end-i])) {
+				return false;
+			}
+		}
+		return true;
+	}
+}

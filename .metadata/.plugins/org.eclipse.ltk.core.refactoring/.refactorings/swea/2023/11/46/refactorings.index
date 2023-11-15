@@ -2,3 +2,6 @@
 1699762197068	Extract local variable 'nextInt'
 1699785311075	Extract local variable 'splitedInput'
 1699795948363	Extract local variable 'max'
+1699849910664	Extract local variable 'concat'
+1699853306959	Extract local variable 'substring'
+1700045556128	Extract method 'sovled'
